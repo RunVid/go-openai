@@ -89,7 +89,6 @@ type RunRequest struct {
 	AdditionalInstructions string         `json:"additional_instructions,omitempty"`
 	Tools                  []Tool         `json:"tools,omitempty"`
 	Metadata               map[string]any `json:"metadata,omitempty"`
-	Stream                 bool           `json:"stream,omitempty"`
 
 	// Sampling temperature between 0 and 2. Higher values like 0.8 are  more random.
 	// lower values are more focused and deterministic.
@@ -111,6 +110,8 @@ type RunRequest struct {
 	ToolChoice any `json:"tool_choice,omitempty"`
 	// This can be either a string or a ResponseFormat object.
 	ResponseFormat any `json:"response_format,omitempty"`
+
+	Stream bool `json:"stream,omitempty"`
 }
 
 // ThreadTruncationStrategy defines the truncation strategy to use for the thread.
@@ -279,8 +280,7 @@ func (c *Client) CreateRunStream(
 		http.MethodPost,
 		c.fullURL(urlSuffix),
 		withBody(request),
-		withBetaAssistantV1(),
-	)
+		withBetaAssistantVersion(c.config.AssistantVersion))
 	if err != nil {
 		return
 	}
