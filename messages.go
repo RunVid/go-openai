@@ -51,11 +51,17 @@ type ImageFile struct {
 	FileID string `json:"file_id"`
 }
 
+type Attachment struct {
+	FileID string   `json:"file_id"`
+	Tools  []string `json:"tools"`
+}
+
 type MessageRequest struct {
-	Role     string         `json:"role"`
-	Content  string         `json:"content"`
-	FileIds  []string       `json:"file_ids,omitempty"` //nolint:revive // backwards-compatibility
-	Metadata map[string]any `json:"metadata,omitempty"`
+	Role        string         `json:"role"`
+	Content     string         `json:"content"`
+	Attachments []Attachment   `json:"attachments,omitempty"`
+	FileIds     []string       `json:"file_ids,omitempty"` //nolint:revive // backwards-compatibility
+	Metadata    map[string]any `json:"metadata,omitempty"`
 }
 
 type MessageFile struct {
