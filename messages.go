@@ -51,9 +51,13 @@ type ImageFile struct {
 	FileID string `json:"file_id"`
 }
 
+type Tool struct {
+	Type string `json:"type"`
+}
+
 type Attachment struct {
 	FileID string   `json:"file_id"`
-	Tools  []string `json:"tools"`
+	Tools  []Tool   `json:"tools"`
 }
 
 type MessageRequest struct {
