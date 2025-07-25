@@ -308,7 +308,8 @@ type ChatCompletionRequest struct {
 	// https://qwen.readthedocs.io/en/latest/deployment/vllm.html#thinking-non-thinking-modes
 	ChatTemplateKwargs map[string]any `json:"chat_template_kwargs,omitempty"`
 	// Specifies the latency tier to use for processing the request.
-	ServiceTier ServiceTier `json:"service_tier,omitempty"`
+	ServiceTier ServiceTier    `json:"service_tier,omitempty"`
+	ExtraBody   map[string]any `json:"extra_body,omitempty"`
 }
 
 type StreamOptions struct {
